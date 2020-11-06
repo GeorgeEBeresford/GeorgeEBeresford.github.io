@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MrDinnertime Rocks ~ Home</title>
+    <link async="async" rel="stylesheet" type="text/css" href="../core/styles/main.css" />
+</head>
+
+<body>
+    <div class="content_background"></div>
+    <div class="content_main">
+        <nav class="navbar">
+            <ul class="navbar_list">
+                <li class="navbar_listitem">
+                    <a class="navbar_link" href="/index.html">Home</a>
+                </li>
+                <li class="navbar_listitem">
+                    <a class="navbar_link" href="./">Jedi Academy</a>
+                    <ul class="navbar_sublist">
+                        <li class="navbar_sublistitem">
+                            <a class="navbar_link" href="./makermodule.html">Makermodule</a>
+                        </li>
+                        <li class="navbar_sublistitem">
+                            <a class="navbar_link" href="./proxymod.html">Proxymod</a>
+                        </li>
+                        <li class="navbar_sublistitem navbar_noaction">
+                            Ontimer Converter
+                        </li>
+                    </ul>
+                </li>
+                <li class="navbar_listitem">
+                    <a class="navbar_link" href="../moneyclickergame">Money Clicker++</a>
+                </li>
+            </ul>
+        </nav>
+        <content class="content">
+            <h1 class="content_title">Ontimer Converter</h1>
+            <div class="content_panel">
+                <a class="content_feature content_featureframe content_side-thirty" href="makermodule.html">
+                    <img class="content_featureimage" src="../core/images/makermodule.jpeg" />
+                    <span class="content_featuretext">Download Makermodule by Didz</span>
+                </a>
+                <p class="content_paneltext content_side-seventy">
+                    One of the commands which was provided by the Jedi Academy modification, Makermodule, is called "ontimer". It's immensely useful. Whilst using the "wait" command, you are forced to sit around whilst your scripts execute.<br/><br/>The
+                    "ontimer" command allows you to perform other commands whilst the script is performing. This converter allows you to take existing scripts and to transform them into ontimer scripts.
+                </p>
+            </div>
+            <div class="content_panel">
+                <h1 class="content_paneltitle">Automatic Delays</h1>
+                <p class="content_paneltext">
+                    When you run the batch file, it'll ask you for a number. This should be an integer not a string (in short, it should be made up of numbers ranging from 0 to 9 not made up of a-z or anything else.) Entering an automatic delay of 20 would convert the following
+                    script:
+                </p>
+                <p class="content_code">
+                    mmarkfoot;<br/> mplace factory/catw2_b;<br/> mplace factory/catw2_b;<br/> mmove 12 0 0
+                </p>
+                <p class="content_paneltext">
+                    into the following:
+                </p>
+                <p class="content_code">
+                    ontimer 0 "mmarkfoot";<br/> ontimer 20 "mplace factory/catw2_b";<br/> ontimer 40 "mplace factory/catw2_b";<br/> ontimer 60 "mmove 12 0 0"
+                </p>
+            </div>
+            <div class="content_panel">
+                <h1 class="content_paneltitle">Manual Delays</h1>
+                <p class="content_paneltext">
+                    As well as the per-command delays, you can also use wait commands in the script itself. The ontimer will take this into consideration when it's working out the time to execute the next command. If you specified 30 to be your automatic delay, the following
+                    script would convert from:
+                </p>
+                <p class="content_code">
+                    mmarkfoot;<br/> mplacefx env/fire 250;<br/> wait 100;<br/> mmove 100
+                </p>
+                <p class="content_paneltext">
+                    to the following:
+                </p>
+                <p class="content_code">
+                    ontimer 0 "mmarkfoot";<br/> ontimer 30 "mplacefx env/fire 250";<br/> ontimer 130 "mmove 100"
+                </p>
+            </div>
+            <div class="content_panel">
+                <h1 class="content_paneltitle">Subtractive Waits</h1>
+                <p class="content_paneltext">
+                    Subtractive waits are also compatible with the ontimer. Rather than getting you infinitely stuck like you normally would with a negative wait, it will take away the specified amount from the next automatic delay. As an example, if you have an automatic
+                    delay of 20ms and you use the following in a script:
+                </p>
+                <p class="content_code">
+                    mmarkfoot;<br/> wait -2;<br/> mplace factory/catw2_b
+                </p>
+                <p class="content_paneltext">
+                    The converter will output:
+                </p>
+                <p class="content_code">
+                    ontimer 0 "mmarkfoot";<br/> ontimer 0 "mplace factory/catw2_b"
+                </p>
+            </div>
+            <div class="content_panel">
+                <h1 class="content_paneltitle">Usage</h1>
+                <p class="content_paneltext">
+                    Before you run the batch file, you'll need to put any files which need converting into the "src" folder. Once they are all set to go, simply run the batch file and proceed to read step 1 to 3 if you're not sure of how the converting process works. The
+                    converted script will be spit out into the provided "bin" folder (you'll be prompted to create one if you forgot to extract it.)<br/><br/> Once you're happy with the script and don't want to make any more changes
+                    to it, or want to pause the script development and want to use a different timing for a different script, move it out of the "bin" folder. I've provided a folder called "archive" if you can't think of a name for a folder to put them
+                    in. Don't forget to include the folder names if you're going to execute the scripts directly from them.
+                </p>
+            </div>
+            <a class="content_panel-download" href="../core/downloads/Ontimer-Converter.zip">
+                <h1 class="content_paneltitle">Download Link</h1>
+                <p class="content_paneltext">
+                    Download the latest version here
+                </p>
+            </a>
+        </content>
+    </div>
+</body>
+
+</html>

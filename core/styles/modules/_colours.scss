@@ -1,0 +1,10 @@
+$white: #FFF;
+$white-translucent: rgba(255, 255, 255, 0.6);
+$black: #000;
+$black-translucent: rgba(0, 0, 0, 0.6);
+$gold: #FFD700;
+$gold-translucent: rgba(255, 215, 0, 0.6);
+$gold-light: lighten($gold, 40%);
+$gold-light-translucent: lighten($gold-translucent, 40%);
+$blue: #ccd4ff;
+$blue-translucent: rgba(204, 212, 255, 0.6);
