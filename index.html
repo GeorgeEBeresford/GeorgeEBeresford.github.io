@@ -1,64 +1,80 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <title>MrDinnertime Rocks ~ Home</title>
-    <link rel="stylesheet" type="text/css" href="./core/styles/main.css" />
+    <title>GeorgeEBeresford ~ Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./core/styles/main.css" >
 </head>
-
-<body>
-    <div class="content_background"></div>
-    <div class="content_main">
-        <nav class="navbar">
-            <ul class="navbar_list">
-                <li class="navbar_listitem navbar_noaction">Home</li>
-                <li class="navbar_listitem" href="Jedi Academy">
-                    <a class="navbar_link" href="./jedi-academy">Jedi Academy</a>
-                    <ul class="navbar_sublist">
-                        <li class="navbar_sublistitem">
-                            <a class="navbar_link" href="./jedi-academy/makermodule.html">Makermodule</a>
-                        </li>
-                        <li class="navbar_sublistitem">
-                            <a class="navbar_link" href="./jedi-academy/proxymod.html">Proxymod</a>
-                        </li>
-                        <li class="navbar_sublistitem">
-                            <a class="navbar_link" href="./jedi-academy/ontimer-converter.html">Ontimer Converter</a>
-                        </li>
-                    </ul>
+<body class="bg-dark text-light">
+    <nav class="navbar navbar-dark navbar-expand-sm bg-primary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav collapse navbar-collapse" id="navbar-main">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
                 </li>
-                <li class="navbar_listitem">
-                    <a class="navbar_link" href="./moneyclickergame">Money Clicker++</a>
+                <li class="nav-item dropdown" href="Jedi Academy">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jedi Academy</a>
+                    <div class="dropdown-menu dropdown-menu-dark bg-secondary">
+                        <a class="dropdown-item navbar_link" href="./jedi-academy/makermodule.html">Makermodule</a>
+                        <a class="dropdown-item navbar_link" href="./jedi-academy/ontimer-converter.html">Ontimer Converter</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./moneyclickergame">Money Clicker++</a>
                 </li>
             </ul>
-        </nav>
-        <content class="content">
-            <h1 class="content_title">Welcome!</h1>
-            <div class="content_features" data-carousel="featured">
-                <a class="content_feature" href="./moneyclickergame">
-                    <img class="content_featureimage" src="./core/images/money-clicker++.jpg" />
-                    <div class="content_featuretext">Money Clicker++</div>
+        </div>
+    </nav>
+    <main class="container text-center">
+        <h1>Welcome!</h1>
+        <div id="carouselFeatured" class="carousel slide col-md-8 d-inline-block" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselFeatured" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true" ></button>
+                <button type="button" data-bs-target="#carouselFeatured" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselFeatured" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <a class="carousel-item active" href="./moneyclickergame">
+                    <img class="d-block w-100 img-fluid" src="./core/images/carousel/money-clicker++.jpg" alt="MoneyClicker++" />
+                    <div class="carousel-caption d-md-block">
+                        <h5>Money Clicker++</h5>
+                        <p class="d-none d-md-block">A spinoff of the Android mobile game Money Clicker</p>
+                    </div>
                 </a>
-                <a class="content_feature" href="jedi-academy/makermodule.html">
-                    <img class="content_featureimage" src="./core/images/makermodule.jpeg" />
-                    <div class="content_featuretext">Makermodule by Didz</div>
+                <a class="carousel-item" href="jedi-academy/makermodule.html">
+                    <img class="d-block w-100 img-fluid" src="./core/images/carousel/makermodule.jpeg" alt="Makermodule" />
+                    <div class="carousel-caption">
+                        <h5>Makermodule by Didz</h5>
+                        <p class="d-none d-md-block">The amazing extension to the Makermod modification for Jedi Academy</p>
+                    </div>
                 </a>
-                <a class="content_feature" href="jedi-academy/ontimer-converter.html">
-                    <img class="content_featureimage" src="./core/images/ontimer-converter.jpg" />
-                    <div class="content_featuretext">Ontimer Converter</div>
-                </a>
-                <a class="content_feature" href="jedi-academy/proxymod.html">
-                    <img class="content_featureimage" src="./core/images/proxymod.webp" />
-                    <div class="content_featuretext">Proxymod by Spior</div>
+                <a class="carousel-item" href="jedi-academy/ontimer-converter.html">
+                    <img class="d-block w-100 img-fluid" src="./core/images/carousel/ontimer-converter.jpg" alt="Ontimer Converter" />
+                    <div class="carousel-caption d-md-block">
+                        <h5>Ontimer Converter</h5>
+                        <p class="d-none d-md-block">A useful tool which converts existing Makermod scripts into Ontimer scripts</p>
+                    </div>
                 </a>
             </div>
-            <p class="content_panel">
-                Hi! This website's all about me, MrDinnertime, and the stuff I've made or want to share with you.
-            </p>
-        </content>
-    </div>
-    <script type="text/javascript" src="./core/scripts/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="./core/scripts/slick.min.js"></script>
-    <script type="text/javascript" src="./core/scripts/carousel.js"></script>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselFeatured" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselFeatured" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <p>
+            Hiya! This website's all about me, George, and the stuff I've made or want to share with you.
+        </p>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
-
 </html>

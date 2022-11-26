@@ -1,9 +1,5 @@
-@import "modules/reset";
-@import "modules/colours";
-@import "modules/slick";
-@import "modules/slick-theme";
-@import "modules/navbar";
-@import "modules/content";
+@import "modules/colour-override";
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14pt;

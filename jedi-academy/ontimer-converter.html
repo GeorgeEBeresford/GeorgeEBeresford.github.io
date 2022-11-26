@@ -1,115 +1,116 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <title>MrDinnertime Rocks ~ Home</title>
-    <link async="async" rel="stylesheet" type="text/css" href="../core/styles/main.css" />
+    <title>GeorgeEBeresford ~ Makermodule</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../core/styles/main.css" >
 </head>
-
-<body>
-    <div class="content_background"></div>
-    <div class="content_main">
-        <nav class="navbar">
-            <ul class="navbar_list">
-                <li class="navbar_listitem">
-                    <a class="navbar_link" href="/index.html">Home</a>
+<body class="bg-dark text-light">
+    <nav class="navbar navbar-dark navbar-expand-sm bg-primary mb-3">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav collapse navbar-collapse" id="navbar-main">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Home</a>
                 </li>
-                <li class="navbar_listitem">
-                    <a class="navbar_link" href="./">Jedi Academy</a>
-                    <ul class="navbar_sublist">
-                        <li class="navbar_sublistitem">
-                            <a class="navbar_link" href="./makermodule.html">Makermodule</a>
-                        </li>
-                        <li class="navbar_sublistitem">
-                            <a class="navbar_link" href="./proxymod.html">Proxymod</a>
-                        </li>
-                        <li class="navbar_sublistitem navbar_noaction">
-                            Ontimer Converter
-                        </li>
-                    </ul>
+                <li class="nav-item dropdown" href="Jedi Academy">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jedi Academy</a>
+                    <div class="dropdown-menu dropdown-menu-dark bg-secondary">
+                        <a class="dropdown-item navbar_link active" href="./makermodule.html">Makermodule</a>
+                        <a class="dropdown-item navbar_link" href="./ontimer-converter.html">Ontimer Converter</a>
+                    </div>
                 </li>
-                <li class="navbar_listitem">
-                    <a class="navbar_link" href="../moneyclickergame">Money Clicker++</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="../moneyclickergame">Money Clicker++</a>
                 </li>
             </ul>
-        </nav>
-        <content class="content">
-            <h1 class="content_title">Ontimer Converter</h1>
-            <div class="content_panel">
-                <a class="content_feature content_featureframe content_side-thirty" href="makermodule.html">
-                    <img class="content_featureimage" src="../core/images/makermodule.jpeg" />
-                    <span class="content_featuretext">Download Makermodule by Didz</span>
-                </a>
-                <p class="content_paneltext content_side-seventy">
-                    One of the commands which was provided by the Jedi Academy modification, Makermodule, is called "ontimer". It's immensely useful. Whilst using the "wait" command, you are forced to sit around whilst your scripts execute.<br/><br/>The
-                    "ontimer" command allows you to perform other commands whilst the script is performing. This converter allows you to take existing scripts and to transform them into ontimer scripts.
+        </div>
+    </nav>
+    <main class="container">
+        <div class="row mb-3">
+            <div class="card col-md-8 p-3 bg-secondary">
+                <h1>Ontimer Converter</h1>
+                <p>
+                    One of the commands which was provided by the Jedi Academy modification, Makermodule, is called "ontimer". It's immensely useful. Whilst using the "wait" command, you are forced to sit around whilst your scripts execute.<br/><br/>
+                    The "ontimer" command allows you to perform other commands whilst the script is performing. This converter allows you to take existing scripts and to transform them into ontimer scripts.
                 </p>
             </div>
-            <div class="content_panel">
-                <h1 class="content_paneltitle">Automatic Delays</h1>
-                <p class="content_paneltext">
+            <a class="card col-md-4 p-3 bg-info text-center" href="../core/downloads/Ontimer-Converter.zip">
+                <img src="../core/images/ontimer-converter.jpg" alt="Ontimer converter download link">
+                <h3>Download ontimer converter</h1>
+            </a>
+        </div>
+        <div class="row mb-3">
+            <div class="card p-3 bg-secondary">
+                <h2>Ontimer</h1>
+                <p class="card-body">
                     When you run the batch file, it'll ask you for a number. This should be an integer not a string (in short, it should be made up of numbers ranging from 0 to 9 not made up of a-z or anything else.) Entering an automatic delay of 20 would convert the following
                     script:
                 </p>
-                <p class="content_code">
+                <code class="card-footer">
                     mmarkfoot;<br/> mplace factory/catw2_b;<br/> mplace factory/catw2_b;<br/> mmove 12 0 0
-                </p>
-                <p class="content_paneltext">
+                </code>
+                <p class="card-body">
                     into the following:
                 </p>
-                <p class="content_code">
+                <code class="card-footer">
                     ontimer 0 "mmarkfoot";<br/> ontimer 20 "mplace factory/catw2_b";<br/> ontimer 40 "mplace factory/catw2_b";<br/> ontimer 60 "mmove 12 0 0"
-                </p>
+                </code>
             </div>
-            <div class="content_panel">
-                <h1 class="content_paneltitle">Manual Delays</h1>
-                <p class="content_paneltext">
+        </div>
+        <div class="row mb-3">
+            <div class="card p-3 bg-secondary">
+                <h2>Manual Delays</h1>
+                <p class="card-body">
                     As well as the per-command delays, you can also use wait commands in the script itself. The ontimer will take this into consideration when it's working out the time to execute the next command. If you specified 30 to be your automatic delay, the following
                     script would convert from:
                 </p>
-                <p class="content_code">
+                <code class="card-footer">
                     mmarkfoot;<br/> mplacefx env/fire 250;<br/> wait 100;<br/> mmove 100
-                </p>
-                <p class="content_paneltext">
+                </code>
+                <p class="card-body">
                     to the following:
                 </p>
-                <p class="content_code">
+                <code class="card-footer">
                     ontimer 0 "mmarkfoot";<br/> ontimer 30 "mplacefx env/fire 250";<br/> ontimer 130 "mmove 100"
-                </p>
+                </code>
             </div>
-            <div class="content_panel">
-                <h1 class="content_paneltitle">Subtractive Waits</h1>
-                <p class="content_paneltext">
+        </div>
+        <div class="row mb-3">
+            <div class="card p-3 bg-secondary">
+                <h2>Subtractive Waits</h1>
+                <p class="card-body">
                     Subtractive waits are also compatible with the ontimer. Rather than getting you infinitely stuck like you normally would with a negative wait, it will take away the specified amount from the next automatic delay. As an example, if you have an automatic
                     delay of 20ms and you use the following in a script:
                 </p>
-                <p class="content_code">
+                <code class="card-footer">
                     mmarkfoot;<br/> wait -2;<br/> mplace factory/catw2_b
-                </p>
-                <p class="content_paneltext">
+                </code>
+                <p class="card-body">
                     The converter will output:
                 </p>
-                <p class="content_code">
+                <code class="card-footer">
                     ontimer 0 "mmarkfoot";<br/> ontimer 0 "mplace factory/catw2_b"
-                </p>
+                </code>
             </div>
-            <div class="content_panel">
-                <h1 class="content_paneltitle">Usage</h1>
-                <p class="content_paneltext">
+        </div>
+        <div class="row mb-3">
+            <div class="card p-3 bg-secondary">
+                <h2>Usage</h1>
+                <p class="card-body">
                     Before you run the batch file, you'll need to put any files which need converting into the "src" folder. Once they are all set to go, simply run the batch file and proceed to read step 1 to 3 if you're not sure of how the converting process works. The
                     converted script will be spit out into the provided "bin" folder (you'll be prompted to create one if you forgot to extract it.)<br/><br/> Once you're happy with the script and don't want to make any more changes
                     to it, or want to pause the script development and want to use a different timing for a different script, move it out of the "bin" folder. I've provided a folder called "archive" if you can't think of a name for a folder to put them
                     in. Don't forget to include the folder names if you're going to execute the scripts directly from them.
                 </p>
             </div>
-            <a class="content_panel-download" href="../core/downloads/Ontimer-Converter.zip">
-                <h1 class="content_paneltitle">Download Link</h1>
-                <p class="content_paneltext">
-                    Download the latest version here
-                </p>
-            </a>
-        </content>
-    </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
-
 </html>
