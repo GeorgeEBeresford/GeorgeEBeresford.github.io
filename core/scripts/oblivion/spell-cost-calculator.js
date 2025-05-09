@@ -51,12 +51,7 @@ class SkillLevelCalculator {
     getLuckModifier() {
 
         const luckLevel = +this.$luckLevelInput.val().trim();
-        if (luckLevel <= 50) {
-            
-            return 0;
-        }
-
-        return Math.floor((luckLevel - 50) / 5) * 2;
+        return (0.4 * (luckLevel - 50));
     }
 
     getMagickaCostModifier () {
@@ -88,8 +83,10 @@ class SkillLevelCalculator {
 
         if (!this.validateLuckLevel()) return;
 
-        const luckModifier = this.getLuckModifier();
-        $("[data-display='luck-modifier']").text(`+${luckModifier}`);
+        const luckModifier = Math.floor(this.getLuckModifier() * 100) / 100;
+        const $display = $("[data-display='luck-modifier']");
+
+        $display.text(luckModifier > 0 ? `+${luckModifier}` : luckModifier);
     }
 
     displayMagickaCosts () {
@@ -151,9 +148,9 @@ class SkillLevelCalculator {
 
         const magickaCost = this.$magickaCostInput.val().trim();
         const modifier = this.getMagickaCostModifier();
-        const baseMagickaCost = magickaCost / modifier;
+        const baseMagickaCost = Math.ceil(magickaCost / modifier);
 
-        this.$baseMagickaDisplay.text(Math.floor(baseMagickaCost));
+        this.$baseMagickaDisplay.text(baseMagickaCost);
 
         this.displayRequiredRank(baseMagickaCost);
     }
@@ -179,10 +176,10 @@ class SkillLevelCalculator {
 
         const modifier = this.getMagickaCostModifier();
 
-        const minLevelApprentice = Math.ceil(26 * modifier);
-        const minLevelJourneyman = Math.ceil(63 * modifier);
-        const minLevelExpert = Math.ceil(150 * modifier);
-        const minLevelMaster = Math.ceil(400 * modifier);
+        const minLevelApprentice = Math.floor(26 * modifier);
+        const minLevelJourneyman = Math.floor(63 * modifier);
+        const minLevelExpert = Math.floor(150 * modifier);
+        const minLevelMaster = Math.floor(400 * modifier);
 
         $("[data-display='novice-max-cost']").text(minLevelApprentice - 1);
 
