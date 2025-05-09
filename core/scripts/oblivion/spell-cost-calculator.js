@@ -3,48 +3,111 @@ class SkillLevelCalculator {
     constructor() {
 
         this.$skillLevelInput = $("#txt-skill-level");
+        this.$luckLevelInput = $("#txt-luck-level");
         this.$magickaCostInput = $("#txt-magicka-cost");
         this.$isTargetedInput = $("#chk-is-targeted");
 
         this.$baseMagickaDisplay = $("[data-display='base-magicka']");
         this.$requiredRankDisplay = $("[data-display='required-rank']");
+
+        this.$needsSkillLevelWrapper = $("[data-wrapper='NeedsSkillLevel']");
     }
 
-    addEventListeners = () => {
+    addEventListeners () {
 
         this.$skillLevelInput.on("change", () => {
 
+            this.hideErrors(this.$skillLevelInput);
+
+            this.displayMagickaCosts();
             this.recalculateSpellCost();
+            this.recalculateMinMax();
+        });
+
+        this.$luckLevelInput.on("change", () => {
+
+            this.hideErrors(this.$luckLevelInput);
+
+            this.displayLuckModifier();
+            this.displayMagickaCosts();
+            this.recalculateSpellCost();
+            this.recalculateMinMax();
         });
 
         this.$magickaCostInput.on("change", () => {
 
+            this.hideErrors(this.$magickaCostInput);
             this.recalculateSpellCost();
         });
 
         this.$isTargetedInput.on("change", () => {
 
+            this.hideErrors(this.$isTargetedInput);
             this.recalculateSpellCost();
+            this.recalculateMinMax();
         });
     }
 
-    recalculateSpellCost = () => {
+    getLuckModifier() {
 
-        this.hideErrors();
+        const luckLevel = +this.$luckLevelInput.val().trim();
+        if (luckLevel <= 50) {
+            
+            return 0;
+        }
 
-        if (!this.validate()) return;
+        return Math.floor((luckLevel - 50) / 5) * 2;
+    }
 
-        const skillLevel = this.$skillLevelInput.val().trim();
-        const magickaCost = this.$magickaCostInput.val().trim();
+    getMagickaCostModifier () {
+
+        const skillLevel = +this.$skillLevelInput.val().trim();
+        const luckModifier = this.getLuckModifier();
         const isTargeted = this.$isTargetedInput.is(":checked");
-        const baseMagickaCost = Math.ceil(isTargeted ? magickaCost / (2.1 - 0.018 * skillLevel) : magickaCost / (1.4 - 0.012 * skillLevel));
+        const effectiveSkillLevel = skillLevel + luckModifier;
 
-        this.$baseMagickaDisplay.text(baseMagickaCost);
-        
-        this.displayRequiredRank(baseMagickaCost);
+        const modifier = isTargeted ? (2.1 - 0.018 * effectiveSkillLevel) : (1.4 - 0.012 * effectiveSkillLevel);
+        return modifier;
+    }
+
+    displayError = (message, $field) => {
+
+        const $wrapper = $field.parents(".row").first();
+        const $existingError = $wrapper.find(".error");
+        if ($existingError.length !== 0){
+
+            $existingError.text(message);
+            return;
+        }
+
+        const $error = $("<div>").addClass("error").text(message);
+        $wrapper.append($error);
+    }
+
+    displayLuckModifier() {
+
+        if (!this.validateLuckLevel()) return;
+
+        const luckModifier = this.getLuckModifier();
+        $("[data-display='luck-modifier']").text(`+${luckModifier}`);
+    }
+
+    displayMagickaCosts () {
+
+        if (!this.validateSkillLevel() || !this.validateLuckLevel()) {
+
+            this.$needsSkillLevelWrapper.hide();
+        }
+        else {
+
+            this.$needsSkillLevelWrapper.show();
+        }
     }
 
     displayRequiredRank(baseMagickaCost) {
+
+        if (!this.validateSkillLevel()) return;
+        if (!this.validateLuckLevel()) return;
 
         if (baseMagickaCost < 26) {
 
@@ -66,69 +129,151 @@ class SkillLevelCalculator {
 
             this.$requiredRankDisplay.text("Master (Level 100)");
         }
-
     }
 
-    validate = () => {
+    hideErrors = ($field) => {
+
+        const $parent = $field.parents(".row").first();
+        const $errors = $parent.find(".error");
+
+        $errors.each((_, error) => {
+
+            const $error = $(error);
+            $error.remove();
+        });
+    }
+
+    recalculateSpellCost () {
+
+        if (!this.validateSkillLevel()) return;
+        if (!this.validateLuckLevel()) return;
+        if (!this.validateMagickaCost()) return;
+
+        const magickaCost = this.$magickaCostInput.val().trim();
+        const modifier = this.getMagickaCostModifier();
+        const baseMagickaCost = magickaCost / modifier;
+
+        this.$baseMagickaDisplay.text(Math.floor(baseMagickaCost));
+
+        this.displayRequiredRank(baseMagickaCost);
+    }
+
+    recalculateMinMax () {
+
+        if (!this.validateSkillLevel() || !this.validateLuckLevel){
+
+            $("[data-display='novice-max-cost']").text("???");
+
+            $("[data-display='apprentice-min-cost']").text("???");
+            $("[data-display='apprentice-max-cost']").text("???");
+
+            $("[data-display='journeyman-min-cost']").text("???");
+            $("[data-display='journeyman-max-cost']").text("???");
+
+            $("[data-display='expert-min-cost']").text("???");
+            $("[data-display='expert-max-cost']").text("???");
+
+            $("[data-display='master-min-cost']").text("???");
+            return;
+        }
+
+        const modifier = this.getMagickaCostModifier();
+
+        const minLevelApprentice = Math.ceil(26 * modifier);
+        const minLevelJourneyman = Math.ceil(63 * modifier);
+        const minLevelExpert = Math.ceil(150 * modifier);
+        const minLevelMaster = Math.ceil(400 * modifier);
+
+        $("[data-display='novice-max-cost']").text(minLevelApprentice - 1);
+
+        $("[data-display='apprentice-min-cost']").text(minLevelApprentice);
+        $("[data-display='apprentice-max-cost']").text(minLevelJourneyman - 1);
+
+        $("[data-display='journeyman-min-cost']").text(minLevelJourneyman);
+        $("[data-display='journeyman-max-cost']").text(minLevelExpert - 1);
+
+        $("[data-display='expert-min-cost']").text(minLevelExpert);
+        $("[data-display='expert-max-cost']").text(minLevelMaster - 1);
+
+        $("[data-display='master-min-cost']").text(minLevelMaster);
+    }
+
+    validateSkillLevel () {
 
         const skillLevel = this.$skillLevelInput.val().trim();
+
         if (skillLevel === "") {
 
-            this.displayError("Please enter a skill level", this.$skillLevelInput);
             return false;
         }
 
         if (isNaN(skillLevel)) {
 
-            this.displayError("Skill level must be numeric (no letters)", this.$skillLevelInput)
+            this.displayError("Skill level must be numeric (no letters)", this.$skillLevelInput);
             return false;
         }
 
         if (+skillLevel < 0) {
 
-            this.displayError("Skill level cannot be lower than 0", this.$skillLevelInput)
+            this.displayError("Skill level cannot be lower than 0", this.$skillLevelInput);
             return false;
         }
 
         if (+skillLevel > 116) {
 
-            this.displayError("Skill level cannot be higher than 116", this.$skillLevelInput)
-            return false;
-        }
-
-        const magickaCost = this.$magickaCostInput.val().trim();
-        if (magickaCost === "") {
-
-            this.displayError("Please enter a magicka cost", this.$magickaCostInput);
-            return false;
-        }
-
-        if (isNaN(magickaCost)) {
-
-            this.displayError("Magicka cost must be numeric (no letters)", this.$magickaCostInput);
+            this.displayError("Skill level cannot be higher than 116", this.$skillLevelInput);
             return false;
         }
 
         return true;
     }
 
-    displayError = (message, $field) => {
+    validateLuckLevel () {
 
-        const $error = $("<div>").addClass("error").text(message);
+        const luckLevel = this.$luckLevelInput.val().trim();
 
-        const $wrapper = $field.parents(".row");
-        $wrapper.append($error);
+        if (luckLevel === "") {
+
+            return false;
+        }
+
+        if (isNaN(luckLevel)) {
+
+            this.displayError("Luck level must be numeric (no letters)", this.$luckLevelInput);
+            return false;
+        }
+
+        if (+luckLevel < 0) {
+
+            this.displayError("Luck level cannot be lower than 0", this.$luckLevelInput);
+            return false;
+        }
+
+        if (+luckLevel > 100) {
+
+            this.displayError("Luck level cannot be higher than 100", this.$luckLevelInput);
+            return false;
+        }
+
+        return true;
     }
 
-    hideErrors = () => {
+    validateMagickaCost () {
 
-        const errors = document.getElementsByClassName("error");
-        for (let index = 0; index < errors.length; index++) {
+        const magickaCost = this.$magickaCostInput.val().trim();
+        if (isNaN(magickaCost)) {
 
-            const error = errors[index];
-            const parent = error.parentNode;
-            parent.removeChild(error);
+            this.displayError("Magicka cost must be numeric (no letters)", this.$magickaCostInput);
+            return false;
         }
+
+        if (+magickaCost < 0) {
+
+            this.displayError("Magicka cost cannot be lower than 0", this.$magickaCostInput);
+            return false;
+        }
+
+        return true;
     }
 }
 
