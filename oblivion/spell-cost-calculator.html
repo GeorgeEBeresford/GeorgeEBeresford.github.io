@@ -1,9 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
 <head>
     <title>GeorgeEBeresford ~ Spell cost calculator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Oblivion Spell Cost Calculator"/>
+    <meta property="og:type" content="Calculator" />
+    <meta property="og:url" content="https://georgeeberesford.github.io/oblivion/spell-cost-calculator.html" />
+    <meta property="og:image" content="https://georgeeberesford.github.io/core/images/oblivion/preview-spell-cost-calc.png" />
+    <meta property="og:site_name" content="GeorgeEBeresford" />
+    <meta property="og:description" content="A calculator used to work out the base magicka cost of a spell from your character's luck and skill level" />
+    <meta property="og:type" content="Calculator" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../core/styles/main.css" >
 </head>
@@ -40,11 +47,16 @@
             </div>
             <div class="card bg-secondary mt-3">
                 <div class="pt-3">
-                    <p class="card p-3 fst-italic" style="background: #444;">
-                        First, enter the level of the skill used for the spell (e.g. for level 75 illusion, enter "75")<br/>
-                        Second, enter your luck level (it affects the skill level used in the formulae)<br/>
-                        Next, specify whether the spell range is "Target".
-                    </p>
+                    <div class="card mb-3" style="background: #444;">
+                        <p class="p-3 fst-italic">
+                            First, enter the level of the skill used for the spell (e.g. for level 75 illusion, enter "75")<br/>
+                            Second, enter your luck level (it affects the skill level used in the formulae)<br/>
+                            Next, specify whether the spell range is "Target".<br/>
+                        </p>
+                        <p class="p-3 pt-0 fst-italic">
+                            The calculator will update once you've either clicked away from the text boxes or move onto a different text box
+                        </p>
+                    </div>
                     <div class="row ms-0 me-0 mb-3">
                         <fieldset class="input-group">
                             <label class="input-group-text" for="txt-skill-level">Skill level</label>
